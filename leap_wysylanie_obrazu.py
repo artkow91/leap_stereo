@@ -76,10 +76,16 @@ class SampleListener(Leap.Listener):
         leap_obraz.step = image_left.width
         
         imdata = ctypes.cast(image_left.data.cast().__long__(), ctypes.POINTER(image_left.width*image_left.height*ctypes.c_ubyte)).contents
-        obraz_z_kamery_left=np.reshape(np.array(imdata,'int'),(image_left.height,image_left.width))
 
-        leap_obraz.data = np.array(obraz_z_kamery_left).tolist()
+        #print list(np.array(imdata,'B')
+        leap_obraz.data=str(bytearray(np.array(imdata,'B').tolist()))
+        #leap_obraz.data=str(imdata)        
+        #print leap_obraz.data
+        #obraz_z_kamery_left=np.reshape(np.array(imdata,'int'),(image_left.height,image_left.width))
 
+        #leap_obraz.data = str(np.array(obraz_z_kamery_left).tolist())
+        #leap_obraz.data=str(imdata)        
+        #leap_obraz.data=str(obraz_z_kamery_left.data.view('uint8')[:,::4])
 
         h = std_msgs.msg.Header()
         h.stamp = rospy.Time.now()
