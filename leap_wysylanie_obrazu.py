@@ -88,6 +88,31 @@ class SampleListener(Leap.Listener):
 
         pub_left.publish(leap_obraz)
 
+
+######### Publisher right
+
+        leap_obraz = sensor_msgs.msg.Image()
+        leap_obraz.height = image_right.height
+        leap_obraz.width = image_right.width
+        leap_obraz.encoding = "mono8"
+        leap_obraz.is_bigendian = 1
+        leap_obraz.step = image_right.width
+        
+        imdata = ctypes.cast(image_right.data.cast().__long__(), ctypes.POINTER(image_right.width*image_right.height*ctypes.c_ubyte)).contents
+
+
+
+        leap_obraz.data=str(bytearray(imdata)) # konwertuje do uint[]
+    
+
+        h = std_msgs.msg.Header()
+        h.stamp = rospy.Time.now()
+        leap_obraz.header = h
+
+        pub_right.publish(leap_obraz)
+
+
+
 ####### Publisher stereo
 	
         D = [-0.004005, 0.0028, 0.000323,0]
