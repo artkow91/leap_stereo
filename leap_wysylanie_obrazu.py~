@@ -110,6 +110,9 @@ class SampleListener(Leap.Listener):
         leap_obraz.header = h
 
         pub_right.publish(leap_obraz)
+
+
+
 ####### Publisher stereo
 	
         D = [-0.004005, 0.0028, 0.000323,0]
@@ -138,7 +141,7 @@ class SampleListener(Leap.Listener):
         h.stamp = rospy.Time.now()
         leap_image.header = h
 
-#        pub_stereo.publish(leap_image)
+        pub_stereo.publish(leap_image)
 
 
 #        print "Frame id: %d, timestamp: %d, hands: %d, fingers: %d, tools: %d, gestures: %d" % (

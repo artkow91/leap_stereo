@@ -141,7 +141,7 @@ class SampleListener(Leap.Listener):
         h.stamp = rospy.Time.now()
         leap_image.header = h
 
-#        pub_stereo.publish(leap_image)
+        pub_stereo.publish(leap_image)
 
 
 #        print "Frame id: %d, timestamp: %d, hands: %d, fingers: %d, tools: %d, gestures: %d" % (
